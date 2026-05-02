@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanmay Sardar | Researcher & Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #0d1f3c;
+    --mid: #1a3560;
+    --accent: #c8a96e;
+    --accent2: #4e9af1;
+    --light: #e8edf5;
+    --muted: #8a9ab5;
+    --white: #ffffff;
+    --card-bg: rgba(255,255,255,0.04);
+    --border: rgba(200,169,110,0.2);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(10,22,40,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 8vw 5rem;
+    position: relative;
+    gap: 4rem;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(78,154,241,0.12) 0%, transparent 70%);
+    top: 50%; right: 5%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-bg-lines {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(200,169,110,0.04) 0px, rgba(200,169,110,0.04) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(0deg, rgba(200,169,110,0.04) 0px, rgba(200,169,110,0.04) 1px, transparent 1px, transparent 60px);
+    pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 2; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    padding: 0.35rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.08;
+    color: var(--white);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 480px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    padding: 0.8rem 2rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.25s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: #d4b87a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,169,110,0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--light);
+    padding: 0.8rem 2rem;
+    border-radius: 0.4rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* ── PHOTO CARD ── */
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .photo-wrapper {
+    position: relative;
+    width: 320px; height: 400px;
+  }
+
+  .photo-frame {
+    position: absolute;
+    top: 20px; left: 20px;
+    right: -20px; bottom: -20px;
+    border: 2px solid var(--accent);
+    border-radius: 0.6rem;
+    opacity: 0.4;
+  }
+
+  .photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 0.6rem;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(10%);
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    z-index: 3;
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+  }
+
+  .badge-role {
+    font-size: 0.78rem;
+    color: var(--light);
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 8vw;
+  }
+
+  section:nth-child(even) {
+    background: rgba(255,255,255,0.015);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin-bottom: 3rem;
+    margin-top: 0.8rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .about-text p strong { color: var(--light); font-weight: 500; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.2rem;
+    transition: all 0.25s;
+  }
+
+  .skill-card:hover {
+    background: rgba(200,169,110,0.06);
+    border-color: rgba(200,169,110,0.4);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    background: rgba(78,154,241,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(78,154,241,0.2);
+    border-radius: 2rem;
+    padding: 0.15rem 0.55rem;
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.2);
+  }
+
+  .tl-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .tl-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .tl-org {
+    font-size: 0.85rem;
+    color: var(--accent2);
+    margin-bottom: 0.6rem;
+  }
+
+  .tl-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    padding: 2rem 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .edu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    border-color: rgba(200,169,110,0.4);
+  }
+
+  .edu-deg {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-field {
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-inst {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .edu-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    margin-top: 0.8rem;
+  }
+
+  /* ── RESEARCH PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    padding: 1.8rem;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    border-color: rgba(78,154,241,0.4);
+    background: rgba(78,154,241,0.04);
+  }
+
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(200,169,110,0.12);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .pub-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.4rem 1.8rem;
+    transition: all 0.25s;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .pub-item:hover {
+    border-color: rgba(200,169,110,0.35);
+    background: rgba(200,169,110,0.03);
+  }
+
+  .pub-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    min-width: 28px;
+    padding-top: 0.15rem;
+  }
+
+  .pub-content { flex: 1; }
+
+  .pub-title {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+  }
+
+  .pub-journal {
+    font-size: 0.8rem;
+    color: var(--accent2);
+    font-style: italic;
+  }
+
+  .pub-doi {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .pub-if {
+    font-size: 0.72rem;
+    background: rgba(78,154,241,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(78,154,241,0.2);
+    border-radius: 2rem;
+    padding: 0.2rem 0.6rem;
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .pub-status {
+    font-size: 0.72rem;
+    background: rgba(200,169,110,0.1);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    padding: 0.2rem 0.6rem;
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  /* ── AWARDS ── */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .award-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.25s;
+  }
+
+  .award-card:hover {
+    border-color: rgba(200,169,110,0.4);
+    transform: translateX(4px);
+  }
+
+  .award-icon { font-size: 1.8rem; }
+
+  .award-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .award-body {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(135deg, var(--deep) 0%, var(--navy) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: rgba(200,169,110,0.1);
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-value {
+    font-size: 0.92rem;
+    color: var(--light);
+    font-weight: 500;
+  }
+
+  .contact-value a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+
+  .contact-value a:hover { text-decoration: underline; }
+
+  .research-interests {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    padding: 2rem;
+  }
+
+  .interest-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+
+  .interest-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .interest-item::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 2rem 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+
+  .footer-text {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 3px; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-right { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">TS.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-bg-circle"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">PhD Scholar · Researcher · Engineer</div>
+    <h1>Tanmay<br><em>Sardar</em></h1>
+    <p class="hero-desc">
+      Engineering researcher specializing in <strong>smart optical sensing systems</strong>, water quality detection, IoT integration, and AI-driven sensing devices at CSIR-AMPRI, Bhopal.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">13+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">19+</div>
+        <div class="stat-label">Conferences</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Research</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#publications" class="btn-primary">View Publications</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-wrapper">
+      <div class="photo-frame"></div>
+      <img src="ChatGPT_Image_Feb_3__2026__08_56_28_AM.png" alt="Tanmay Sardar" class="photo-img">
+      <div class="photo-badge">
+        <div class="badge-text">// PhD Scholar · AcSIR</div>
+        <div class="badge-role">CSIR-AMPRI · Bhopal, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 // About</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="section-line"></div>
+
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I am a <strong>PhD Scholar in Engineering Science</strong> at the Academy of Scientific and Innovative Research (AcSIR), working as a Project Associate at <strong>CSIR-Advanced Materials and Processes Research Institute</strong>, Bhopal.
+      </p>
+      <p>
+        My research journey is driven by a passion for building <strong>intelligent sensing systems</strong> that address real-world challenges in water quality, environmental monitoring, and public health. I combine optical physics, nanomaterials, IoT, and AI to design next-generation sensors.
+      </p>
+      <p>
+        My career objective is to pursue a <strong>teaching faculty position</strong> where I can apply my academic background and research expertise to foster quality education, mentor students, and contribute to institutional academic excellence.
+      </p>
+      <p>
+        I hold an M.Tech in Mechanical Engineering from <strong>MNNIT Prayagraj</strong> and a B.E. from <strong>Mumbai University</strong>. Prior to research, I worked as a Field Support Engineer with Indus Towers Limited in Mumbai.
+      </p>
+    </div>
+
+    <div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🔬</div>
+          <div class="skill-name">Optical Sensing</div>
+          <div class="skill-tags"><span class="tag">Fluorescence</span><span class="tag">Aptasensor</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <div class="skill-name">AI & IoT</div>
+          <div class="skill-tags"><span class="tag">ML</span><span class="tag">Real-time</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <div class="skill-name">Programming</div>
+          <div class="skill-tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">MATLAB</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🖨️</div>
+          <div class="skill-name">Additive Mfg.</div>
+          <div class="skill-tags"><span class="tag">3D Print</span><span class="tag">CAD/CAE</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🧪</div>
+          <div class="skill-name">Nanomaterials</div>
+          <div class="skill-tags"><span class="tag">GQD</span><span class="tag">CQD</span><span class="tag">AgNP</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🛠️</div>
+          <div class="skill-name">CAD Software</div>
+          <div class="skill-tags"><span class="tag">SolidWorks</span><span class="tag">ANSYS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">02 // Experience</div>
+  <h2 class="section-title">Professional History</h2>
+  <div class="section-line"></div>
+
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="tl-date">December 2021 – Present</div>
+      <div class="tl-title">Project Associate – I</div>
+      <div class="tl-org">CSIR – Advanced Materials and Processes Research Institute, Bhopal</div>
+      <div class="tl-desc">
+        Working on the design and development of smart optical sensing systems for water quality monitoring. Leading integration of AI, IoT, and additive manufacturing in multi-parameter sensor platforms.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">October 2020 – March 2021</div>
+      <div class="tl-title">M.Tech. Dissertation Candidate</div>
+      <div class="tl-org">CSIR – Advanced Materials and Processes Research Institute, Bhopal</div>
+      <div class="tl-desc">
+        Dissertation: <em>"Design and Development of Optical Sensor for Detection of Water Contaminant."</em> Designed a fluorescence-based optical sensor for Arsenic detection in water resources.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">July 2016 – August 2017</div>
+      <div class="tl-title">Field Support Engineer (FSE)</div>
+      <div class="tl-org">Indus Towers Limited, Mumbai (Joint Venture: IDEA, AIRTEL, VODAFONE)</div>
+      <div class="tl-desc">
+        Conducted technical training and warehouse surveys. Led O&M on site infrastructure including automation of DG systems. Worked on the Automation Project in the Mumbai Area for Vodafone and Ericsson.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">03 // Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="section-line"></div>
+
+  <div class="edu-grid fade-in">
+    <div class="edu-card">
+      <div class="edu-deg">Doctor of Philosophy</div>
+      <div class="edu-field">Engineering Science</div>
+      <div class="edu-inst">Academy of Scientific and Innovative Research (AcSIR)</div>
+      <div class="edu-year">2023 – Present</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-deg">Master of Technology</div>
+      <div class="edu-field">Mechanical Engineering</div>
+      <div class="edu-inst">Motilal Nehru National Institute of Technology, Prayagraj</div>
+      <div class="edu-year">2019 – 2021</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-deg">Bachelor of Engineering</div>
+      <div class="edu-field">Mechanical Engineering</div>
+      <div class="edu-inst">Mumbai University, Mumbai</div>
+      <div class="edu-year">2012 – 2016</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-label">04 // Research</div>
+  <h2 class="section-title">Projects & Research Work</h2>
+  <div class="section-line"></div>
+
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Smart Optical Sensing Device for Multi-Parameter Detection in Aquatic Sources with AI & Additive Manufacturing</div>
+      <div class="project-desc">Real-time centralized monitoring system for Cadmium and Arsenic using AI and CAD-CAE-CAM computer-aided technologies. Combines smart sensing with IoT for accurate water quality surveillance.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Optical Sensor for Detection of Arsenic in Water Resources</div>
+      <div class="project-desc">Developed a fluorescence-based smart optical sensor for arsenic detection — a globally significant water contamination challenge. Proposed novel receptor materials and sensing phenomena.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">Manufacturing of Automatic Guided Hovercraft</div>
+      <div class="project-desc">Designed and manufactured an autonomously guided hovercraft with skirt, blower, propeller, and Arduino (UNO). Led coding and automation as team head; integrated sensors and actuators for full automation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">05 // Publications</div>
+  <h2 class="section-title">Journal Publications</h2>
+  <div class="section-line"></div>
+
+  <div class="pub-list fade-in">
+    <div class="pub-item">
+      <div class="pub-num">[1]</div>
+      <div class="pub-content">
+        <div class="pub-title">Sensing Material and Design of an Optical Sensor for Detection of Arsenic – Review <span class="pub-if">IF: 4.5</span></div>
+        <div class="pub-journal">IEEE Sensors Journal, 22(8), pp.7442-7450, 2022</div>
+        <div class="pub-doi">DOI: 10.1109/JSEN.2022.3151661</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[2]</div>
+      <div class="pub-content">
+        <div class="pub-title">A Critical Review of IoT-Based Structural Health Monitoring for Dams <span class="pub-if">IF: 8.2</span></div>
+        <div class="pub-journal">IEEE Internet of Things Journal, 2024</div>
+        <div class="pub-doi">DOI: 10.1109/JIOT.2024.3488290</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[3]</div>
+      <div class="pub-content">
+        <div class="pub-title">IoT-Enabled Sensors for Fluoride Detection: Developments, Performance, and Challenges – A Review <span class="pub-if">IF: 4.5</span></div>
+        <div class="pub-journal">IEEE Sensor Journal, 2025</div>
+        <div class="pub-doi">DOI: 10.1109/JSEN.2025.3618177</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[4]</div>
+      <div class="pub-content">
+        <div class="pub-title">Advancement in Nanogenerators using different CQD & GQD based materials</div>
+        <div class="pub-journal">Integrated Ferroelectrics, Taylor & Francis, 2025</div>
+        <div class="pub-doi">DOI: 10.1080/10584587.2025.2482419</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[5]</div>
+      <div class="pub-content">
+        <div class="pub-title">Quantum Dots-based IoT Interfaced Water Quality Detection</div>
+        <div class="pub-journal">Integrated Ferroelectrics, Taylor & Francis, 2025</div>
+        <div class="pub-doi">DOI: 10.1080/10584587.2025.2482409</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[6–9]</div>
+      <div class="pub-content">
+        <div class="pub-title">Series on Electron Microscopy, SEM Applications, Nano Material Characterization & Digital Image Correlation for Structural Health Monitoring</div>
+        <div class="pub-journal">Integrated Ferroelectrics, Taylor & Francis, 2025</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[10]</div>
+      <div class="pub-content">
+        <div class="pub-title">Application of Machine Learning Techniques to FESEM Image Data Analysis and Micrographs <span class="pub-status">Accepted</span></div>
+        <div class="pub-journal">Integrated Ferroelectrics, Taylor & Francis</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[11]</div>
+      <div class="pub-content">
+        <div class="pub-title">Advancements in Designing Optical Sensors for Water Quality Assessment Applying IoT – A Review <span class="pub-status">Under Review</span></div>
+        <div class="pub-journal">Sensors and Actuators – Physics</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[12]</div>
+      <div class="pub-content">
+        <div class="pub-title">Design of Smart Opto-Chemo-Geo-Sensor with AI for Detection of Arsenic in Water in Real-time <span class="pub-status">Under Review</span></div>
+        <div class="pub-journal">IEEE Sensor Letters</div>
+      </div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-num">[13]</div>
+      <div class="pub-content">
+        <div class="pub-title">Role of Bioadsorbents in Heavy Metal Remediation – A Review <span class="pub-status">Under Review</span></div>
+        <div class="pub-journal">Environmental Science and Pollution Research</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-label">06 // Recognition</div>
+  <h2 class="section-title">Awards & Memberships</h2>
+  <div class="section-line"></div>
+
+  <div class="awards-grid fade-in">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div>
+        <div class="award-title">Best Presentation Award</div>
+        <div class="award-body">National Conference on New Horizons in Applied Research for Sustainability, APS University, Rewa — December 2024</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🥇</div>
+      <div>
+        <div class="award-title">Best Paper Award</div>
+        <div class="award-body">27th International Conference on Hydraulics, Water Resources, Environmental and Coastal Engineering, Punjab Engineering College, Chandigarh — December 2022</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌐</div>
+      <div>
+        <div class="award-title">IAENG Member</div>
+        <div class="award-body">Membership of the International Association of Engineers (IAENG)</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🔧</div>
+      <div>
+        <div class="award-title">ISHRAE Member</div>
+        <div class="award-body">Indian Society of Heating, Refrigerating and Air Conditioning Engineers</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">📚</div>
+      <div>
+        <div class="award-title">Faculty Development Programs</div>
+        <div class="award-body">Technical Team Member for 3 Faculty Development Programs (FDPs) and 5 National Level Science Teachers Workshops</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🔭</div>
+      <div>
+        <div class="award-title">CSIR-Jigyasa Initiative</div>
+        <div class="award-body">Organized numerous programs under the CSIR-Jigyasa initiative from 2020 to 2026, fostering scientific temper</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">07 // Contact</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="section-line"></div>
+
+  <div class="contact-grid fade-in">
+    <div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:tanmay.sardar@gmail.com">tanmay.sardar@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">Mobile</div>
+          <div class="contact-value">+91-7738224748 / +91-8308473371</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">14A, Surabhi Vihar, Pundalikbaba Nagar,<br>Amravati – 444604, Maharashtra, India</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🏛️</div>
+        <div>
+          <div class="contact-label">Institution</div>
+          <div class="contact-value">CSIR-AMPRI, Bhopal, India</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🎓</div>
+        <div>
+          <div class="contact-label">Enrolled At</div>
+          <div class="contact-value">Academy of Scientific and Innovative Research (AcSIR)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-interests">
+      <div class="interest-title">Research Interests</div>
+      <div class="interest-item">Smart Optical Sensing Systems</div>
+      <div class="interest-item">Water Quality Monitoring & Detection</div>
+      <div class="interest-item">IoT-Enabled Sensor Networks</div>
+      <div class="interest-item">Nanomaterials (GQD, CQD, Ag Nanoparticles)</div>
+      <div class="interest-item">Artificial Intelligence in Sensing</div>
+      <div class="interest-item">Additive Manufacturing (3D/4D Printing)</div>
+      <div class="interest-item">Structural Health Monitoring</div>
+      <div class="interest-item">Electron Microscopy & Characterization</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Tanmay Sardar</div>
+  <div class="footer-text">PhD Scholar · CSIR-AMPRI · AcSIR · © 2026</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
